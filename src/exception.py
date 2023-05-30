@@ -8,12 +8,14 @@ def error_mesage(message, error_detail:sys):
 
 class CustomException(Exception):
     def __init__(self, message, error_detail:sys):
-        super.__init__(message)
+        super().__init__(message)
         self.error_message = error_mesage(message, error_detail)
 
     def __str__(self):
         return self.error_message
     
+
+        
 
 
 
