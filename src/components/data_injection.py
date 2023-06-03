@@ -7,6 +7,8 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
 
+from src.components.data_transformation import DataTransformation
+from src.components.data_transformation import DataTransformationConfig
 
 @dataclass
 class DataInjectionConfig:
@@ -42,11 +44,16 @@ class DataInjection:
             )
 
         except Exception as e:
-                    raise CustomException(e, sys)
+                raise CustomException(e, sys)
         
 
 if __name__ == '__main__':
     data_injection = DataInjection()
-    data_injection.inject_data()
+    train_data, test_data = data_injection.inject_data()
+
+    data_transformation = DataTransformation()
+    data_transformation.initiate_data_transform(train_data, test_data)
+
+
 
 
