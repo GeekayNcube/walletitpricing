@@ -35,7 +35,7 @@ class DataTransformation:
     def get_data_transform_obj(self):
         try:
             
-            numeric_columns = ['Amount','CustomerAmount']
+            numeric_columns = ['Amount']
             categorical_columns = ['Description']
 
             numeric_pipeline = Pipeline(
@@ -101,6 +101,9 @@ class DataTransformation:
 
             save_obj(
                     preprocessors,self.data_transform_config.preprocessors_obj_file_path, )
+            
+            logging.info('Data transformation saved')
+
             return (train_arr, test_arr,self.data_transform_config.preprocessors_obj_file_path)
 
         except Exception as e:

@@ -53,6 +53,7 @@ if __name__ == '__main__':
 
     data_transformation = DataTransformation()
     data_transformation.initiate_data_transform(train_data, test_data)
+    
 
 
 
