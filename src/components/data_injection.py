@@ -9,6 +9,9 @@ from dataclasses import dataclass
 
 from src.components.data_transformation import DataTransformation
 from src.components.data_transformation import DataTransformationConfig
+from src.components.model_trainer import ModelTrainerConfig
+from src.components.model_trainer import ModelTrainer
+
 
 @dataclass
 class DataInjectionConfig:
@@ -25,6 +28,7 @@ class DataInjection:
     def inject_data(self):
         logging.info('Injecting data')
         try:
+             
             data = pd.read_csv("data/data.csv")
 
             os.makedirs(os.path.dirname(self.config.train_data_path), exist_ok=True)
@@ -52,7 +56,13 @@ if __name__ == '__main__':
     train_data, test_data = data_injection.inject_data()
 
     data_transformation = DataTransformation()
-    data_transformation.initiate_data_transform(train_data, test_data)
+    train_arr, test_arr, _ = data_transformation.initiate_data_transform(train_data, test_data)
+
+    modelTrainer = ModelTrainer()
+    result = modelTrainer.train_model(train_arr, test_arr)
+    print(result)
+
+
     
 
 

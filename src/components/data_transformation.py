@@ -96,8 +96,8 @@ class DataTransformation:
             input_feature_test_arr = preprocessors.transform(input_features_test)
 
 
-            train_arr = [input_feature_train_arr, target_features_train]
-            test_arr = [input_feature_test_arr, target_features_test]
+            train_arr = np.c_[input_feature_train_arr, target_features_train]
+            test_arr = np.c_[input_feature_test_arr, target_features_test]
 
             save_obj(
                     preprocessors,self.data_transform_config.preprocessors_obj_file_path, )
